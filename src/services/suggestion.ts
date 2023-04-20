@@ -31,11 +31,11 @@ export async function generateSuggestion(financialInfo: FinancialInformation): P
 
   // Train the neural network
   const trainingData = tf.tensor2d([
-    [25, 2, 100000, 60000, 0],
-    [30, 4, 150000, 80000, 20000],
-    [40, 6, 200000, 100000, 50000],
-    [50, 8, 300000, 120000, 100000],
-    [60, 10, 400000, 150000, 150000],
+    [25, 5, 100000, 60000, 0],
+    [35, 4, 150000, 80000, 20000],
+    [45, 5, 200000, 100000, 50000],
+    [55, 2, 300000, 120000, 100000],
+    [65, 2, 400000, 150000, 150000],
   ]);
 
   const outputData = tf.tensor2d([

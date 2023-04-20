@@ -30,14 +30,14 @@ class HostController {
     }
 
     @Post('save-financial-information')
-    private saveFinancialInformation(req: Request, res: Response) {
+    private async saveFinancialInformation(req: Request, res: Response) {
         try {
             const { age, riskTolerance, currentNetWorth, annualIncome, debt } = req.body;
             const financialInfo = { age, riskTolerance, currentNetWorth, annualIncome, debt };
       
             // Generate a suggestion based on the form data
-            const suggestion = generateSuggestion(financialInfo);
-
+            const suggestion = await generateSuggestion(financialInfo);
+            console.log('suggestion', suggestion)
             // TODO: Process the form data and save it to the database
             return res.status(OK).json({
                 message: 'Form data saved successfully',
