@@ -1,5 +1,6 @@
-import * as tf from '@tensorflow/tfjs';
-import { FinancialInformation } from './types';
+import * as tf from '@tensorflow/tfjs-node';
+import * as fs from 'fs';
+import { FinancialInformation } from '../util/types';
 
 interface Portfolios {
   [key: string]: string[];
@@ -31,5 +32,5 @@ export async function trainAndSaveModel(trainingData: tf.Tensor2D, outputData: t
   await net.fit(trainingData, outputData, options);
 
   // Save the trained model to persistent memory
-  await net.save('localstorage://my-model');
+  await net.save('file://../models/model.json');
 }

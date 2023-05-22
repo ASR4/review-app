@@ -1,7 +1,7 @@
-import * as tf from '@tensorflow/tfjs';
+import * as tf from '@tensorflow/tfjs-node';
 import { FinancialInformation, Portfolios } from '../util/types';
 
-const MODEL_PATH = 'file://./model';
+const MODEL_PATH = 'file://src/models/model.json/model.json';
 
 const portfolios: Portfolios = {
   conservative: ['bonds', 'real estate'],
@@ -11,7 +11,7 @@ const portfolios: Portfolios = {
 
 export async function generateSuggestion(financialInfo: FinancialInformation): Promise<string> {
   // Load the trained model from persistent memory
-  const net = await tf.loadLayersModel('localstorage://my-model');
+  const net = await tf.loadLayersModel(MODEL_PATH);
 
   // Use the neural network to generate a suggestion
   const input = tf.tensor2d([
@@ -21,7 +21,7 @@ export async function generateSuggestion(financialInfo: FinancialInformation): P
   const output = net.predict(input) as tf.Tensor;
   const probabilities = Array.from(output.dataSync());
   const predictedPortfolio = Object.keys(portfolios)[probabilities.indexOf(Math.max(...probabilities))];
-  
+  console.log('predictedPortfolio', predictedPortfolio);
   return predictedPortfolio;
 }
 
