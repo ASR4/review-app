@@ -5,4 +5,4 @@
 # from roo trun:  npm run start-dev
 
 # Running react server
-# cd to publice/react/product-page and run: run npm start
+# cd to src/public/react/product-page and run: run npm start
